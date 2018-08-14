@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Outdoor Sport</ion-title>
+      <ion-buttons right *ngIf="userNotCreated">
+          <button ion-button icon-right (click)="login()">
+            Create Profile
+             <ion-icon name="create"></ion-icon>
+          </button>
+         </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="home">
+<ion-card *ngIf="isClicked">
+    <ion-list>
+
+        <ion-item>
+          <ion-label>Mail</ion-label>
+          <ion-input type="text" name="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label>Password</ion-label>
+          <ion-input type="password" name="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Gender</ion-label>
+            <ion-select [(ngModel)]="gender">
+              <ion-option value="f">Female</ion-option>
+              <ion-option value="m">Male</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+              <ion-label>Category</ion-label>
+              <ion-select [(ngModel)]="category" multiple="true">
+                  <ion-icon name="bicycle"></ion-icon><ion-option>Bicycle</ion-option>
+                  <ion-icon name="walk"></ion-icon><ion-option>Running</ion-option>
+                  <ion-icon name="basketball"></ion-icon><ion-option>Basketball</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <div style="width: 15px">
+                  <button ion-button color="secondary" clear (click)="presentActionSheet()">
+                      <ion-icon name="camera"></ion-icon>Select Image
+                    </button>
+                <img src="{{pathForImage(lastImage)}}" class="image" [hidden]="lastImage === null">        
+              </div>
+            </ion-item>
+            <button ion-button icon-right (click)="save()">
+                Save
+              </button>
+      </ion-list>
+</ion-card>
+</ion-content>
